@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get a Quote | Sheer Sparkles — Luxury Cleaning Services London & Surrey</title>
+<meta name="description" content="Request a free, no-obligation cleaning quote from Sheer Sparkles. Premium deep cleaning, end-of-tenancy, Airbnb turnovers & more across London & Surrey.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --charcoal: #0F172A; --deep: #020617; --cream: #F0FDF4; --warm-white: #FFFFFF;
+    --gold: #84CC16; --gold-light: #A3E635; --gold-dark: #65A30D;
+    --blue: #1E3A5F; --blue-bright: #2563EB; --blue-light: #3B82F6;
+    --yellow: #FACC15; --yellow-light: #FDE68A;
+    --taupe: #64748B; --soft-gray: #E2E8F0; --mid-gray: #64748B;
+    --text-dark: #0F172A; --text-body: #334155; --text-light: #64748B;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: Helvetica, Arial, sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { font-family: var(--font-body); color: var(--text-body); background: var(--warm-white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 3rem; display: flex; align-items: center; justify-content: space-between; background: rgba(253,252,250,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(132,204,22,0.12); transition: all 0.4s ease; }
+  nav.scrolled { padding: 0.85rem 3rem; box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
+  .nav-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+  .nav-logo { font-family: var(--font-display); font-size: 1.65rem; font-weight: 600; color: var(--charcoal); letter-spacing: -0.02em; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-body); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; position: relative; padding-bottom: 2px; transition: color 0.3s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: var(--yellow); transition: width 0.35s cubic-bezier(0.16,1,0.3,1); }
+  .nav-links a:hover { color: var(--charcoal); } .nav-links a:hover::after { width: 100%; }
+  .nav-cta { background: var(--blue)!important; color: #fff!important; padding: 0.65rem 1.6rem!important; border-radius: 40px!important; letter-spacing: 0.1em!important; font-size: 0.78rem!important; transition: all 0.35s ease!important; }
+  .nav-cta::after { display: none!important; } .nav-cta:hover { background: var(--gold-dark)!important; color: var(--warm-white)!important; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: all 0.3s; }
+
+  /* PAGE HERO */
+  .page-hero {
+    padding: 10rem 3rem 5rem;
+    background: var(--deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(132,204,22,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(132,204,22,0.04) 0%, transparent 50%),
+                linear-gradient(160deg, #020617 0%, #020617 40%, #0F172A 100%);
+  }
+  .page-hero-pattern {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(132,204,22,0.5) 40px, rgba(132,204,22,0.5) 41px);
+  }
+  .page-hero-content { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; text-align: center; }
+  .page-hero .section-label { color: var(--yellow-light); justify-content: center; }
+  .page-hero .section-label::before { background: var(--gold-light); }
+  .page-hero h1 {
+    font-family: var(--font-display); font-size: clamp(2.5rem,4.5vw,3.8rem);
+    font-weight: 300; line-height: 1.15; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 1.25rem;
+  }
+  .page-hero h1 em { font-style: italic; color: var(--yellow-light); font-weight: 400; }
+  .page-hero p { font-size: 1.1rem; line-height: 1.7; color: rgba(248,245,240,0.5); max-width: 550px; margin: 0 auto; }
+
+  .section-label { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-bright); margin-bottom: 1.25rem; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--yellow); }
+
+  /* MAIN CONTENT */
+  .contact-section {
+    padding: 5rem 3rem 7rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* FORM */
+  .form-wrapper { position: relative; }
+  .form-wrapper h2 {
+    font-family: var(--font-display); font-size: 1.8rem; font-weight: 500;
+    color: var(--charcoal); margin-bottom: 0.5rem;
+  }
+  .form-wrapper > p {
+    font-size: 0.95rem; color: var(--text-light); margin-bottom: 2.5rem; line-height: 1.6;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: 1 / -1; }
+  .form-group label {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--charcoal);
+  }
+  .form-group label .optional { font-weight: 400; color: var(--text-light); text-transform: none; letter-spacing: 0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--soft-gray);
+    background: var(--warm-white); font-family: var(--font-body); font-size: 0.92rem;
+    color: var(--charcoal); transition: all 0.3s; outline: none; appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(132,204,22,0.1);
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--taupe); }
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%238a8480' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+
+  /* Service checkbox grid */
+  .service-select { grid-column: 1 / -1; }
+  .service-select label { margin-bottom: 0.5rem; }
+  .service-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+  }
+  .service-option {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.7rem 1rem; border: 1px solid var(--soft-gray);
+    cursor: pointer; transition: all 0.3s; background: var(--warm-white);
+  }
+  .service-option:hover { border-color: var(--gold); }
+  .service-option input { display: none; }
+  .service-option .check-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--soft-gray);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: all 0.25s;
+  }
+  .service-option .check-box svg { width: 12px; height: 12px; color: var(--warm-white); opacity: 0; transition: opacity 0.2s; }
+  .service-option input:checked ~ .check-box {
+    background: var(--gold); border-color: var(--gold);
+  }
+  .service-option input:checked ~ .check-box svg { opacity: 1; }
+  .service-option input:checked ~ .service-option-text { color: var(--charcoal); font-weight: 500; }
+  .service-option-text { font-size: 0.88rem; color: var(--text-body); transition: all 0.2s; }
+
+  .btn-submit {
+    grid-column: 1 / -1; margin-top: 0.75rem;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+    background: var(--blue); color: #fff; padding: 1.1rem 2.5rem; border-radius: 40px;
+    border: none; font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 40px;
+    transition: all 0.35s ease; width: 100%;
+  }
+  .btn-submit:hover { background: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(132,204,22,0.25); }
+  .btn-submit svg { width: 16px; height: 16px; transition: transform 0.3s; }
+  .btn-submit:hover svg { transform: translateX(3px); }
+
+  .form-note {
+    grid-column: 1 / -1; font-size: 0.78rem; color: var(--text-light); line-height: 1.5;
+    margin-top: 0.25rem;
+  }
+
+  /* SUCCESS STATE */
+  .form-success {
+    display: none; text-align: center; padding: 3rem 2rem;
+    border: 1px solid rgba(39,174,96,0.2); background: rgba(39,174,96,0.04);
+  }
+  .form-success.show { display: block; }
+  .form-success svg { width: 48px; height: 48px; color: var(--success); margin-bottom: 1rem; }
+  .form-success h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem; }
+  .form-success p { font-size: 0.95rem; color: var(--text-light); line-height: 1.6; }
+
+  .form-error {
+    display: none; text-align: center; padding: 1.5rem; margin-bottom: 1.5rem;
+    border: 1px solid rgba(192,57,43,0.2); background: rgba(192,57,43,0.04);
+    grid-column: 1 / -1; border-radius: 8px;
+  }
+  .form-error.show { display: block; }
+  .form-error p { font-size: 0.9rem; color: #c0392b; line-height: 1.5; }
+
+  .btn-submit.loading { opacity: 0.7; pointer-events: none; }
+  .btn-submit .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite; }
+  .btn-submit.loading .spinner { display: inline-block; }
+  .btn-submit.loading .btn-text { display: none; }
+  .btn-submit.loading .btn-arrow { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SIDEBAR */
+  .contact-sidebar { position: sticky; top: 7rem; }
+
+  .sidebar-card {
+    background: var(--cream); border: 1px solid var(--soft-gray);
+    padding: 2.25rem; margin-bottom: 1.5rem;
+  }
+  .sidebar-card h3 {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 500;
+    color: var(--charcoal); margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--soft-gray);
+  }
+
+  .contact-method {
+    display: flex; align-items: flex-start; gap: 0.85rem;
+    padding: 0.85rem 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .contact-method:last-child { border-bottom: none; padding-bottom: 0; }
+  .contact-method:first-of-type { padding-top: 0; }
+  .contact-method-icon {
+    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+    background: rgba(37,99,235,0.1); border-radius: 50%; flex-shrink: 0;
+  }
+  .contact-method-icon svg { width: 16px; height: 16px; color: var(--blue-bright); }
+  .contact-method-text strong { display: block; font-size: 0.85rem; color: var(--charcoal); margin-bottom: 0.15rem; }
+  .contact-method-text a { font-size: 0.9rem; color: var(--gold-dark); text-decoration: none; transition: color 0.3s; }
+  .contact-method-text a:hover { color: var(--charcoal); }
+  .contact-method-text span { font-size: 0.82rem; color: var(--text-light); }
+
+  /* Expect card */
+  .expect-list { list-style: none; }
+  .expect-list li {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.6rem 0; font-size: 0.9rem; color: var(--text-body); line-height: 1.5;
+  }
+  .expect-list li svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; margin-top: 0.15rem; }
+
+  /* Quote image */
+  .sidebar-image {
+    width: 100%; height: 220px; overflow: hidden; margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .sidebar-image img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9) saturate(0.85); }
+  .sidebar-image-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.6) 0%, transparent 60%);
+    display: flex; align-items: flex-end; padding: 1.25rem;
+  }
+  .sidebar-image-overlay span {
+    font-family: var(--font-display); font-size: 1rem; font-style: italic;
+    color: var(--yellow-light); line-height: 1.4;
+  }
+
+  /* FOOTER */
+  footer { background: #0F172A; border-top: 1px solid rgba(132,204,22,0.08); padding: 3rem 3rem 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.78rem; color: rgba(248,245,240,0.3); }
+  .footer-bottom a { color: rgba(248,245,240,0.3); text-decoration: none; transition: color 0.3s; } .footer-bottom a:hover { color: var(--gold); }
+  .footer-legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .contact-section { grid-template-columns: 1fr; gap: 3rem; }
+    .contact-sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .sidebar-image { display: none; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; } nav.scrolled { padding: 0.75rem 1.5rem; }
+    .nav-links { display: none; } .nav-toggle { display: flex; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--warm-white); border-bottom: 1px solid var(--soft-gray); padding: 1.5rem; gap: 1rem; }
+    .page-hero { padding: 8rem 1.5rem 3.5rem; }
+    .contact-section { padding: 3rem 1.5rem 5rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .service-options { grid-template-columns: 1fr; }
+    .contact-sidebar { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; } .footer-legal { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-brand"><span class="nav-logo">Sheer <span>Sparkles</span></span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li>
+    <li><a href="add-ons.html">Add-Ons</a></li><li><a href="special-offer.html">Special Offer</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-pattern"></div>
+  <div class="page-hero-content">
+    <div class="section-label">Contact Us</div>
+    <h1>Let's Make Your Space <em>Shine</em></h1>
+    <p>Tell us about your property and we'll send you a tailored, no-obligation quote — usually within the hour.</p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<div class="contact-section">
+
+  <!-- FORM COLUMN -->
+  <div class="form-wrapper reveal">
+    <h2>Request a Free Quote</h2>
+    <p>Fill in the details below and we'll get back to you promptly. The more you tell us, the more accurate your quote will be.</p>
+
+    <form id="quoteForm" class="form-grid" onsubmit="return handleSubmit(event)">
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" placeholder="e.g. Sarah" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" placeholder="e.g. Mitchell" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="+44 7XXX XXX XXX" required>
+      </div>
+
+      <div class="form-group">
+        <label for="postcode">Postcode</label>
+        <input type="text" id="postcode" name="postcode" placeholder="e.g. KT8 2HT" required>
+      </div>
+      <div class="form-group">
+        <label for="propertyType">Property Type</label>
+        <select id="propertyType" name="propertyType" required>
+          <option value="" disabled selected>Select…</option>
+          <option>Studio / 1 Bedroom</option>
+          <option>2 Bedroom</option>
+          <option>3 Bedroom</option>
+          <option>4+ Bedroom</option>
+          <option>Office / Commercial</option>
+          <option>Airbnb / Short-Stay Let</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group service-select">
+        <label>Service(s) Required</label>
+        <div class="service-options">
+          <label class="service-option">
+            <input type="checkbox" name="services" value="deep-clean">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Deep Cleaning</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="eot">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">End of Tenancy</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="airbnb">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Airbnb / Short-Stay</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="commercial">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Commercial / Office</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="after-builders">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">After-Builders</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="carpet">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Carpet / Upholstery</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="move-in">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Move-In Clean</span>
+          </label>
+          <label class="service-option">
+            <input type="checkbox" name="services" value="other">
+            <span class="check-box"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></span>
+            <span class="service-option-text">Other / Not Sure</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="preferredDate">Preferred Date <span class="optional">(optional)</span></label>
+        <input type="date" id="preferredDate" name="preferredDate">
+      </div>
+      <div class="form-group">
+        <label for="heardAbout">How Did You Hear About Us? <span class="optional">(optional)</span></label>
+        <select id="heardAbout" name="heardAbout">
+          <option value="" disabled selected>Select…</option>
+          <option>Google Search</option>
+          <option>Instagram</option>
+          <option>Facebook</option>
+          <option>TikTok</option>
+          <option>Recommendation / Word of Mouth</option>
+          <option>Returning Client</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group full">
+        <label for="message">Additional Details <span class="optional">(optional)</span></label>
+        <textarea id="message" name="message" placeholder="E.g. number of bathrooms, specific areas of concern, access arrangements, any other details that would help us quote accurately…"></textarea>
+      </div>
+
+      <p class="form-note">By submitting this form you agree to our <a href="index.html" style="color:var(--gold-dark);">Privacy Policy</a>. We'll never share your information with third parties.</p>
+
+      <div class="form-error" id="formError"><p>Something went wrong. Please try again or contact us directly at <a href="tel:+447576020984" style="color:#c0392b;font-weight:600">+44 7576 020 984</a>.</p></div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span class="btn-text">Send My Quote Request</span>
+        <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        <span class="spinner"></span>
+      </button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+      <h3>Quote Request Received</h3>
+      <p>Thank you! Crystal will review your details and send you a personalised quote — usually within the hour during business hours. We look forward to making your space sparkle.</p>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="contact-sidebar">
+
+    <div class="sidebar-image reveal">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=500&q=80" alt="Beautifully clean modern living room">
+      <div class="sidebar-image-overlay">
+        <span>"Every space deserves to feel genuinely cared for."</span>
+      </div>
+    </div>
+
+    <div class="sidebar-card reveal reveal-delay-1">
+      <h3>Get in Touch Directly</h3>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg></div>
+        <div class="contact-method-text">
+          <strong>Call or Text</strong>
+          <a href="tel:+447576020984">+44 7576 020 984</a>
+        </div>
+      </div>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg></div>
+        <div class="contact-method-text">
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/447576020984">Message us on WhatsApp</a>
+        </div>
+      </div>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <div class="contact-method-text">
+          <strong>Business Hours</strong>
+          <span>Mon–Fri: 9am – 5pm</span>
+        </div>
+      </div>
+      <div class="contact-method">
+        <div class="contact-method-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg></div>
+        <div class="contact-method-text">
+          <strong>Service Area</strong>
+          <span>London & Surrey (KT, SW, TW postcodes)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-card reveal reveal-delay-2">
+      <h3>What to Expect</h3>
+      <ul class="expect-list">
+        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Personalised quote within 1 hour</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> No hidden fees or surprises</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Same-week availability</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Fully insured & vetted team</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg> Eco-friendly products included</li>
+      </ul>
+    </div>
+
+  </aside>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <span>&copy; 2026 Sheer Sparkles Ltd. Company No. 12671299. All rights reserved.</span>
+      <div class="footer-legal"><a href="index.html">Privacy</a><a href="index.html">Terms of Service</a><a href="index.html">T&Cs</a><a href="index.html">Back to Home</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ═══════════════════════════════════════════════════════
+  // GOOGLE SHEETS INTEGRATION
+  // Replace the URL below with your Google Apps Script URL
+  // (see google-apps-script.js for setup instructions)
+  // ═══════════════════════════════════════════════════════
+  const GOOGLE_SHEET_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
+  document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+
+  // Form submission → Google Sheets
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = document.getElementById('quoteForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successDiv = document.getElementById('formSuccess');
+    const errorDiv = document.getElementById('formError');
+
+    // Hide any previous error
+    errorDiv.classList.remove('show');
+
+    // Collect checked services
+    const services = [];
+    form.querySelectorAll('input[name="services"]:checked').forEach(cb => {
+      services.push(cb.closest('.service-option').querySelector('.service-option-text').textContent.trim());
+    });
+
+    // Build data payload
+    const data = {
+      firstName: form.firstName.value.trim(),
+      lastName: form.lastName.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      postcode: form.postcode.value.trim(),
+      propertyType: form.propertyType.value,
+      services: services,
+      preferredDate: form.preferredDate.value,
+      heardAbout: form.heardAbout.value,
+      message: form.message.value.trim()
+    };
+
+    // Show loading state
+    submitBtn.classList.add('loading');
+
+    // Check if URL has been configured
+    if (GOOGLE_SHEET_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+      // Demo mode — skip API call, show success immediately
+      console.log("📋 Form data (demo mode — set GOOGLE_SHEET_URL to enable):", data);
+      setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        form.style.display = 'none';
+        successDiv.classList.add('show');
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 800);
+      return false;
+    }
+
+    // Send to Google Sheets
+    fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      // no-cors means we can't read the response, but if fetch didn't throw, it likely succeeded
+      submitBtn.classList.remove('loading');
+      form.style.display = 'none';
+      successDiv.classList.add('show');
+      successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(error => {
+      console.error('Submission error:', error);
+      submitBtn.classList.remove('loading');
+      errorDiv.classList.add('show');
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    return false;
+  }
+</script>
+</body>
+</html>
