@@ -495,6 +495,8 @@
   </div>
 </footer>
 
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none"></iframe>
+
 <script>
   // ═══════════════════════════════════════════════════════
   // GOOGLE SHEETS INTEGRATION
@@ -515,7 +517,7 @@
   window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
   document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
 
-  // Form submission → Google Sheets
+  // Form submission → Google Sheets (via hidden iframe — no CORS issues)
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -527,33 +529,39 @@
     // Hide any previous error
     errorDiv.classList.remove('show');
 
-    // Collect checked services
+    // Collect checked services into a hidden field
     const services = [];
     form.querySelectorAll('input[name="services"]:checked').forEach(cb => {
       services.push(cb.closest('.service-option').querySelector('.service-option-text').textContent.trim());
     });
 
-    // Build data payload
-    const data = {
-      firstName: form.firstName.value.trim(),
-      lastName: form.lastName.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      postcode: form.postcode.value.trim(),
-      propertyType: form.propertyType.value,
-      services: services,
-      preferredDate: form.preferredDate.value,
-      heardAbout: form.heardAbout.value,
-      message: form.message.value.trim()
-    };
+    // Set the combined services value into a hidden input
+    let servicesField = form.querySelector('input[name="servicesJoined"]');
+    if (!servicesField) {
+      servicesField = document.createElement('input');
+      servicesField.type = 'hidden';
+      servicesField.name = 'servicesJoined';
+      form.appendChild(servicesField);
+    }
+    servicesField.value = services.join(', ');
 
     // Show loading state
     submitBtn.classList.add('loading');
 
     // Check if URL has been configured
     if (GOOGLE_SHEET_URL === "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      // Demo mode — skip API call, show success immediately
-      console.log("📋 Form data (demo mode — set GOOGLE_SHEET_URL to enable):", data);
+      console.log("📋 Form data (demo mode):", {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        postcode: form.postcode.value,
+        propertyType: form.propertyType.value,
+        services: services,
+        preferredDate: form.preferredDate.value,
+        heardAbout: form.heardAbout.value,
+        message: form.message.value
+      });
       setTimeout(() => {
         submitBtn.classList.remove('loading');
         form.style.display = 'none';
@@ -563,26 +571,32 @@
       return false;
     }
 
-    // Send to Google Sheets
-    fetch(GOOGLE_SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(() => {
-      // no-cors means we can't read the response, but if fetch didn't throw, it likely succeeded
+    // Submit via hidden iframe (bypasses CORS entirely)
+    form.action = GOOGLE_SHEET_URL;
+    form.method = 'POST';
+    form.target = 'hidden_iframe';
+
+    // Listen for iframe load (means Google received it)
+    const iframe = document.getElementById('hidden_iframe');
+    iframe.onload = function() {
       submitBtn.classList.remove('loading');
       form.style.display = 'none';
       successDiv.classList.add('show');
       successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    })
-    .catch(error => {
-      console.error('Submission error:', error);
-      submitBtn.classList.remove('loading');
-      errorDiv.classList.add('show');
-      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+    };
+
+    // Set a timeout in case iframe.onload doesn't fire (cross-origin)
+    setTimeout(() => {
+      if (!successDiv.classList.contains('show')) {
+        submitBtn.classList.remove('loading');
+        form.style.display = 'none';
+        successDiv.classList.add('show');
+        successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 3000);
+
+    // Actually submit the form
+    form.submit();
 
     return false;
   }
