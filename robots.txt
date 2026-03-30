@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.sheersparkles.co.uk/sitemap.xml
+
+# Block crawling of form submissions and utility files
+Disallow: /google-apps-script.js

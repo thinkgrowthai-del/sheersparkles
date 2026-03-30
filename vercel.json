@@ -1,0 +1,42 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/(.*).(jpg|jpeg|png|gif|webp|svg|ico)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).(css|js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
+  "redirects": [
+    { "source": "/home", "destination": "/", "statusCode": 301 },
+    { "source": "/additional-services", "destination": "/add-ons", "statusCode": 301 },
+    { "source": "/f-a-q", "destination": "/faq", "statusCode": 301 },
+    { "source": "/privacy-policy", "destination": "/", "statusCode": 301 },
+    { "source": "/terms-of-services", "destination": "/", "statusCode": 301 },
+    { "source": "/terms-conditions", "destination": "/", "statusCode": 301 }
+  ]
+}
