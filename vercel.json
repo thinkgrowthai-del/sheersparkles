@@ -35,8 +35,8 @@
     { "source": "/home", "destination": "/", "statusCode": 301 },
     { "source": "/additional-services", "destination": "/add-ons", "statusCode": 301 },
     { "source": "/f-a-q", "destination": "/faq", "statusCode": 301 },
-    { "source": "/privacy-policy", "destination": "/", "statusCode": 301 },
-    { "source": "/terms-of-services", "destination": "/", "statusCode": 301 },
-    { "source": "/terms-conditions", "destination": "/", "statusCode": 301 }
+    { "source": "/privacy-policy", "destination": "/privacy-policy", "statusCode": 200 },
+    { "source": "/terms-of-services", "destination": "/terms-of-service", "statusCode": 301 },
+    { "source": "/terms-conditions", "destination": "/terms-and-conditions", "statusCode": 301 }
   ]
 }
